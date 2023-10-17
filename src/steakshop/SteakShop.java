@@ -19,9 +19,13 @@ public class SteakShop extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MainForm.fxml"));
         
         Scene scene = new Scene(root);
+        
+        stage.setTitle("Steak Shop");
+//        stage.setMinHeight(600);
+//        stage.setMinWidth(800);
         
         stage.setScene(scene);
         stage.show();

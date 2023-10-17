@@ -8,5 +8,43 @@ and open the template in the editor.
     Author     : UserPRO
 */
 .gradiennt{
+    -fx-background-color: linear-gradient(to bottom right,#252cb1,#81abf8);
+}
+.white-form{
+    -fx-background-color: #fff;
+}
+.head-lable{
+    -fx-border-color: #286155;
+    -fx-border-width: 0 0 0 3px;
+    -fx-padding: 0 0 0 5px;
+}
+.login-btn{
     -fx-background-color: linear-gradient(to bottom right,#658ed6,#3c5a8c);
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+/*    -fx-font-size: 24px;*/
+}
+.login-btn:hover{
+    -fx-background-color: linear-gradient(to bottom right,#252cb1,#252cb1);
+}
+.text-field{
+    -fx-background-color: transparent;
+    -fx-border-color: linear-gradient(to bottom right,#252cb1,#3c5a8c);
+    -fx-border-radius: 10px;
+    -fx-border-width: 0.8px;
+}
+.text-field:focused{
+    -fx-border-width: 4px;
+}
+.create-btn{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-border-color: #fff;
+    -fx-border-width: 5px;
+}
+.create-btn:hover{
+    -fx-background-color: #fff;
+    -fx-text-fill: #000;    
 }
