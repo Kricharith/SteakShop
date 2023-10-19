@@ -19,7 +19,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -29,6 +32,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -117,7 +121,8 @@ public class FXMLDocumentController implements Initializable {
     private ResultSet result;
 
     private Alert alert;
-
+    
+    
     public void loginBtn() {
         if (si_username.getText().isEmpty() || si_password.getText().isEmpty()) {
             alert = new Alert(AlertType.ERROR);
@@ -127,20 +132,37 @@ public class FXMLDocumentController implements Initializable {
             alert.showAndWait();
         } else {
             String selctData = "SELECT username,password FROM employee WHERE username = ? AND password = ?";
-            connect = database.connectDB();
+            connect = Database.connectDB();
             try {
                 prepare = connect.prepareStatement(selctData);
                 prepare.setString(1, si_username.getText());
                 prepare.setString(2, si_password.getText());
 
                 result = prepare.executeQuery();
-
-                if (result.next()) {
+                if (result.next()) {         
                     alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("INFORMATION Message");
                     alert.setHeaderText(null);
                     alert.setContentText("Successfully Login!");
                     alert.showAndWait();
+                    // Get username หลังจากการล็อคอินมาแล้ว
+                    Data.username = si_username.getText();
+                    Data.passwoed = si_password.getText();
+                    //Link page MainForm
+                    Parent root = FXMLLoader.load(getClass().getResource("MainForm.fxml"));
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                    
+                    stage.setTitle("Steak Shop");
+                    stage.setMinHeight(800);
+                    stage.setMinWidth(1400);
+
+                    stage.setScene(scene);
+                    stage.show();
+                    
+                    si_loginBtn.getScene().getWindow().hide();
                 } else {
                     alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Error Message");
@@ -167,7 +189,7 @@ public class FXMLDocumentController implements Initializable {
         } else {
             String regData = "INSERT INTO employee (username,password,question,answer,date)"
                     + "VALUES(?,?,?,?,?)";
-            connect = database.connectDB();
+            connect = Database.connectDB();
 
             try {
                 String checkUsername = "SELECT username FROM employee WHERE username = '" + su_username.getText() + "'";
@@ -254,7 +276,7 @@ public class FXMLDocumentController implements Initializable {
             alert.showAndWait();
         } else {
             String selctData = "SELECT username,question,answer FROM employee WHERE username = ? AND question = ? AND answer = ?";
-            connect = database.connectDB();
+            connect = Database.connectDB();
             try {
                 prepare = connect.prepareStatement(selctData);
                 prepare.setString(1, fp_username.getText());
@@ -288,7 +310,7 @@ public class FXMLDocumentController implements Initializable {
             if (np_newPassword.getText().equals(np_confirmPassword.getText())) {
                 String getDate = "SELECT date FROM employee WHERE username = '"
                         + fp_username.getText() + "'";
-                connect = database.connectDB();
+                connect = Database.connectDB();
 
                 try {
                     prepare = connect.prepareStatement(getDate);

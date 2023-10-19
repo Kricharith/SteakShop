@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 19, 2023, 5:33:26 AM
+    Author     : UserPRO
+*/
+.card{
+    -fx-background-color:#fff;
+    -fx-border-radius:  5px;
+}
+.shadow{
+    -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.5),5,0,0,0);
+}
+.btn{
+    -fx-background-color: linear-gradient(to bottom right, #142ea4, #5231d3);
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+/*    -fx-font-size: 24px; */
+}
+.btn:hover{
+    -fx-background-color: linear-gradient(to bottom right, #098c53, #246861);
+}

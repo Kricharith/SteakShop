@@ -19,7 +19,7 @@ public class SteakShop extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MainForm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("SteakShop.fxml"));
         
         Scene scene = new Scene(root);
         
